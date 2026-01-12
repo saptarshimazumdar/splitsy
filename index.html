@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
     <link rel="manifest" href="/Images/favicon/site.webmanifest">
-    <title>Party Split</title>
+    <title>Splitsy</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/modal.css">
     <link rel="stylesheet" href="styles/collapsible.css">
@@ -33,6 +33,7 @@
                 <!-- Names will be added here dynamically -->
             </tbody>
         </table>
+        <button id="previous-expenses" class="previous-expenses" title="History" onclick="revealFromArchived()">&#9201;</button>
         <button class="proceed-adding-expenses" onclick="addExpenses()">Add Expenses >></button>
     </div>
 
@@ -65,7 +66,7 @@
                     </div>
                     <div class="form-group-expenses-line">
                         <div class="form-group-expenses-line-block">
-                            <label for="paid-equally">Did everyone contribute?</label>
+                            <label for="paid-equally">Did everyone consume?</label>
                             <select id="paid-equally" class="expense-person" name="contribution" required
                                 onchange="toggleDividedAmong(this)">
                                 <option value="1">Yes</option>
@@ -96,6 +97,8 @@
         <div class="settlement-list" id="settlement-list">
             <!-- Settlement items will be added here dynamically -->
         </div>
+        <button id="go-back" class="go-back-btn" title="Go Back" onclick="editExpenses()">&#8656;</button>
+        <button id="dump-expense-to-history" class="dump-expense-to-history-btn" title="Archive" onclick="archiveExpense()">&#9766;</button>
     </div>
 
 </body>

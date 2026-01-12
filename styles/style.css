@@ -208,7 +208,8 @@ table.added-names .column-action {
     display: none !important;
 }
 
-.container .toggle-expense-form-btn {
+.container .toggle-expense-form-btn,
+.container .dump-expense-to-history-btn {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
@@ -225,7 +226,8 @@ table.added-names .column-action {
     -webkit-text-stroke: 1px #000;
 }
 
-.container .go-back-btn {
+.container .go-back-btn,
+.container .previous-expenses {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -291,6 +293,15 @@ table.added-names .column-action {
 .expense-list-table-item-paid-by {
     flex: 10;
     padding-left: 2rem;
+}
+
+.expense-list-table-item-remove-expense {
+    text-align: right;
+    cursor: pointer;
+    padding: 0 0.5rem 0 0.5rem;
+    border: 2px solid;
+    border-radius: 50%;
+    zoom: 0.75;
 }
 
 .no-expenses {
