@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/Images/favicon/site.webmanifest">
+    <title>Splitsy - Settlement</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/collapsible.css">
+</head>
+
+<body>
+    <h1 class="header">Splitsy</h1>
+    <div class="container" id="settlement-container">
+        <div class="settlement-wrapper">
+            <div class="settlement-list" id="settlement-list">
+                <!-- Settlement items will be added here dynamically -->
+            </div>
+        </div>
+        <button id="go-back" class="go-back-btn" title="Go Back" onclick="editExpenses()">&#8656;</button>
+        <button id="share-report" class="center-btn" title="Share Report" onclick="shareReport()">&#x1F4C8;</button>
+        <button id="dump-expense-to-history" class="dump-expense-to-history-btn" title="Archive" onclick="archiveExpense()">&#128193;</button>
+    </div>
+
+    <div id="message-modal" class="modal confirm-modal" onclick="if (event.target === this) closeMessage()">
+        <div class="modal-content history-content">
+            <p id="message-text" class="confirm-message"></p>
+            <div class="button-holder">
+                <button type="button" class="add-expense-btn" title="OK" onclick="closeMessage()">&#10003;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/util.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/collapsible.js"></script>
+    <script src="scripts/settlement.js"></script>
+</body>
+
+</html>

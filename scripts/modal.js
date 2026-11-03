@@ -2,6 +2,7 @@
 var modal = document.getElementById("expense-form");
 var btn = document.getElementById("toggle-expense-form");
 var backBtn = document.getElementById("go-back");
+var settleBtn = document.getElementById("settle-expenses");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -26,12 +27,14 @@ document.onclick = function (event) {
 
 const closeModal = () => {
   modal.style.display = "none";
-  btn.style.display = "block";
-  backBtn.style.display = "block";
+  btn.style.display = "";
+  backBtn.style.display = "";
+  settleBtn.style.display = "";
 }
 
 const openModal = () => {
   modal.style.display = "block";
   btn.style.display = "none";
   backBtn.style.display = "none";
+  settleBtn.style.display = "none";
 }

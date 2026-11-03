@@ -38,6 +38,119 @@
     animation-duration: 0.4s
 }
 
+.modal-content.history-content {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05)),
+        rgba(20, 20, 20, 0.38);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    padding: 1rem;
+    box-sizing: border-box;
+    max-height: 70vh;
+    overflow-y: auto;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.history-title {
+    margin: 0 0 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.history-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem 1.5rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.history-item:hover {
+    background-color: rgba(0, 0, 0, 0.42);
+}
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.history-row .history-item {
+    flex: 1;
+    width: auto;
+}
+
+.history-delete {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.history-delete:hover {
+    background-color: #fff;
+    color: #111;
+}
+
+.history-content .button-holder {
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.history-content .close-expense-btn,
+.history-content .add-expense-btn {
+    zoom: 1.5;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 25%;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.history-content .close-expense-btn:hover,
+.history-content .add-expense-btn:hover {
+    background: #fff;
+    color: #111;
+}
+
+.confirm-modal {
+    z-index: 2;
+}
+
+.confirm-message {
+    margin: 0 0 1rem;
+    text-align: center;
+    word-break: break-word;
+}
+
+.confirm-modal .button-holder {
+    justify-content: space-around;
+}
+
 /* Add Animation */
 @-webkit-keyframes slideIn {
     from {

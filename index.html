@@ -17,97 +17,46 @@
 <body>
     <h1 class="header">Splitsy</h1>
     <div class="container" id="names-container">
-        <form class="form-group-names" id="form-group-names">
-            <textarea id="persons" name="persons" rows="4"
-                placeholder="  Type the name of the folks involved in the party, put comma separated names.."></textarea>
-            <button id="submitNames" type="submit">Proceed</button>
-        </form>
-        <table class="added-names" id="added-names">
-            <thead>
-                <tr>
-                    <th class="names-column">Names</th>
-                    <th class="names-action">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="namesList">
-                <!-- Names will be added here dynamically -->
-            </tbody>
-        </table>
+        <input type="text" id="group-name" class="group-name" placeholder="Group name" maxlength="60"
+            autocomplete="off">
         <button id="previous-expenses" class="previous-expenses" title="History" onclick="revealFromArchived()">&#9201;</button>
-        <button class="proceed-adding-expenses" onclick="addExpenses()">Add Expenses >></button>
+        <button id="next-members" class="next-btn" title="Add Members" onclick="addMembers()">&#6308;</button>
     </div>
 
-    <div class="container hide" id="expenses-container">
-        <div class="expense-list">
-            <table class="expense-list-table">
-                <tbody id="expense-list-table-body">
-                    <!-- Expense items will be added here dynamically -->
-                </tbody>
-            </table>
-            <button class="proceed-to-settle" onclick="settleExpenses()">Settle Expenses >></button>
-        </div>
-        <div id="expense-form" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <form class="form-group-expenses" id="form-group-expenses">
-                    <div class="form-group-expenses-line">
-                        <input type="text" id="expense-name" class="expense-name" name="item" placeholder="Expense Name"
-                            required>
-                        <input type="number" id="expense-amount" class="expense-amount" name="price"
-                            placeholder="Amount" min="0" required>
-                    </div>
-                    <div class="form-group-expenses-line">
-                        <div class="form-group-expenses-line-block">
-                            <label for="paid-equally">Who paid?</label>
-                            <select id="paid-by" class="expense-person" name="payer" required>
-                                <!-- Added dynamically -->
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group-expenses-line">
-                        <div class="form-group-expenses-line-block">
-                            <label for="paid-equally">Did everyone consume?</label>
-                            <select id="paid-equally" class="expense-person" name="contribution" required
-                                onchange="toggleDividedAmong(this)">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group-expenses-line">
-                        <div id="divided-among" class="remove-from-screen payee-person">
-                            <!-- Added dynamically -->
-                        </div>
-                    </div>
-                    <div class="form-group-expenses-line">
-                        <div class="form-group-expenses-line-block button-holder">
-                            <button type="reset" id="closeExpenseForm" class="close-expense-btn">&#10007;</button>
-                            <button type="submit" id="addExpense" class="add-expense-btn">&#10003;</button>
-                        </div>
-                    </div>
-                </form>
+    <div id="history-modal" class="modal" onclick="if (event.target === this) closeHistory()">
+        <div class="modal-content history-content">
+            <h2 class="history-title">History</h2>
+            <div id="history-list" class="history-list"></div>
+            <div class="button-holder">
+                <button type="button" class="close-expense-btn" title="Close" onclick="closeHistory()">&#10007;</button>
             </div>
         </div>
-
-        <button id="go-back" class="go-back-btn" title="Go Back" onclick="editNames()">&#8656;</button>
-        <button id="toggle-expense-form" class="toggle-expense-form-btn" title="Add Expense">&plus;</button>
     </div>
 
-    <div class="container hide" id="settlement-container">
-        <div class="settlement-list" id="settlement-list">
-            <!-- Settlement items will be added here dynamically -->
+    <div id="confirm-modal" class="modal confirm-modal" onclick="if (event.target === this) closeConfirm()">
+        <div class="modal-content history-content">
+            <p id="confirm-message" class="confirm-message"></p>
+            <div class="button-holder">
+                <button type="button" class="close-expense-btn" title="Cancel" onclick="closeConfirm()">&#10007;</button>
+                <button type="button" id="confirm-accept" class="add-expense-btn" title="Confirm">&#10003;</button>
+            </div>
         </div>
-        <button id="go-back" class="go-back-btn" title="Go Back" onclick="editExpenses()">&#8656;</button>
-        <button id="dump-expense-to-history" class="dump-expense-to-history-btn" title="Archive" onclick="archiveExpense()">&#9766;</button>
     </div>
 
+    <div id="message-modal" class="modal confirm-modal" onclick="if (event.target === this) closeMessage()">
+        <div class="modal-content history-content">
+            <p id="message-text" class="confirm-message"></p>
+            <div class="button-holder">
+                <button type="button" class="add-expense-btn" title="OK" onclick="closeMessage()">&#10003;</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="scripts/util.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/home.js"></script>
 </body>
-<script src="scripts/util.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/modal.js"></script>
-<script src="scripts/collapsible.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"
-    integrity="sha512-X0CJvcClD8EXFn5Oq8BD5lIsznKDfxb0Sf9Wr8MCCTyAEWaAAxr0Jvm3qyofsmN7eSHMZ0PPQGjVKroLAfexrA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </html>

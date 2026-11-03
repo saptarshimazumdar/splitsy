@@ -1,6 +1,6 @@
 .individual-settlement {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #fff;
     cursor: pointer;
     padding: 1rem;
     width: 100%;
@@ -12,7 +12,7 @@
 
 .active,
 .individual-settlement:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .collapsible-settlement-content {
@@ -21,13 +21,15 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    color: whitesmoke;
+    color: #fff;
 }
 
 .settlement-list-item {
-    margin: 0.25rem 0;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .individual-settlement:after {

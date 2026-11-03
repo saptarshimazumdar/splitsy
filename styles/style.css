@@ -6,85 +6,160 @@ html {
 }
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5)), url('https://picsum.photos/1920/1080.jpg');
+    background: linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, .35)), url('https://picsum.photos/1920/1080.jpg');
     /* url('https://picsum.photos/1920/1080.jpg') */
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     margin: 0;
+    color: #fff;
+}
+
+/* Shared frosted-glass surface */
+.header,
+.container,
+.toast {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05)),
+        rgba(20, 20, 20, 0.38);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .header {
     width: calc(100vw - 2rem);
     margin: 1rem auto;
     height: 5rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: whitesmoke;
+    box-sizing: border-box;
     text-align: center;
     line-height: 5rem;
     border-radius: 1rem;
 }
 
 .container {
-    width: calc(100vw - 4rem);
+    width: calc(100vw - 4rem - 2px);
     margin: 1rem;
-    height: calc(100vh - 10rem);
-    background-color: rgba(0, 0, 0, 0.5);
+    height: calc(100vh - 10rem - 2px);
     border-radius: 1rem;
     overflow-y: auto;
     padding: 1rem;
     position: relative;
 }
 
-.form-group-names {
-    width: calc(100% - 2rem);
-    margin: 1rem auto;
-    display: flex;
-    flex-direction: column;
+.toast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: 0.75rem 1rem;
+    border-radius: 0 0 1rem 1rem;
+    text-align: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    pointer-events: none;
 }
 
-.form-group-names textarea {
-    width: inherit;
-    border-radius: 0.5rem 1.5rem 1.5rem;
-    padding: 1rem;
-    height: 5rem;
-    background-color: rgb(245, 245, 245, 0.8);
+.toast.show {
+    transform: translateY(0);
+}
+
+.container button {
+    text-shadow: none;
+}
+
+.group-name {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    outline: none;
+}
+
+.group-name:focus,
+.form-group-names input:focus {
+    border-color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.group-name::placeholder,
+.form-group-names input::placeholder {
+    color: rgba(245, 245, 245, 0.55);
+}
+
+.form-group-names {
+    width: 100%;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+.form-group-names input {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    outline: none;
 }
 
 .form-group-names button {
-    margin: 1rem auto;
-    width: 100%;
-    line-height: 3rem;
-    border: 1px solid rgb(245, 245, 245, 0.8);
-    border-radius: 0.5rem 1.5rem 1.5rem;
-    background-color: transparent;
-    color: whitesmoke;
-    font-size: large;
+    flex: none;
+    width: 3.25rem;
+    border: 1px solid #fff;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 1.25rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-weight: bolder;
+}
+
+.form-group-names button:hover {
+    background-color: #fff;
+    color: #111;
 }
 
 table.added-names {
     width: 100%;
-    margin: 1rem auto;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    overflow: hidden;
 }
 
 table.added-names th,
 table.added-names td {
-    border-bottom: 1.5px solid whitesmoke;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: whitesmoke;
+    background: rgba(0, 0, 0, 0.22);
+    color: #fff;
 }
 
-table.added-names th:last-child {
-    border-radius: 0 1.5rem 0 0;
+table.added-names th {
+    background: rgba(0, 0, 0, 0.35);
 }
 
+table.added-names th:last-child,
 table.added-names th:first-child {
-    border-radius: 1.5rem 0 0 0;
+    border-radius: 0;
 }
 
 table.added-names .names-column {
@@ -139,6 +214,11 @@ table.added-names .column-action {
     width: 100%;
 }
 
+/* Avoid empty rows adding extra margin while their panel is hidden */
+.form-group-expenses-line:has(> .remove-from-screen) {
+    display: none;
+}
+
 .form-group-expenses-line-block label {
     color: transparent;
     -webkit-text-stroke: 0.8px #000;
@@ -182,66 +262,131 @@ table.added-names .column-action {
     width: 100%;
 }
 
-.payee-person .stakeholder {
+.payee-person .member {
     flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    padding: 0.25rem 0.5rem;
 }
 
-
-#names-container,
-#expenses-container,
-#settlement-container {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease, visibility 0.5s ease, zoom 0.5s ease;
+.payee-person .member label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
-#names-container.hide,
-#expenses-container.hide,
-#settlement-container.hide {
-    opacity: 0;
-    zoom: 0.0001;
-    visibility: hidden;
-    pointer-events: none;
+.payee-person .member input[type="checkbox"] {
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    accent-color: #333;
+    cursor: pointer;
 }
+
+.payee-person .payer-amount,
+.payee-person .consumer-amount {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    padding: 0.25rem 0.5rem;
+}
+
+.payer-amount span {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payer-amount input,
+.consumer-amount input[type="number"] {
+    width: 5rem;
+    flex: none;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+}
+
 
 .remove-from-screen {
     display: none !important;
 }
 
 .container .toggle-expense-form-btn,
-.container .dump-expense-to-history-btn {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-    border: 0px solid transparent;
-    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    font-size: 3rem;
-    line-height: 4rem;
-    font-weight: bolder;
-    color: transparent;
-    -webkit-text-stroke: 1px #000;
-}
-
+.container .dump-expense-to-history-btn,
+.container .next-btn,
+.container .center-btn,
 .container .go-back-btn,
 .container .previous-expenses {
     position: absolute;
     bottom: 1rem;
-    left: 1rem;
     height: 4rem;
     width: 4rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    border: 0px solid transparent;
-    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    --shift: 0px;
+    --scale: 1;
+    transform: translateX(var(--shift)) scale(var(--scale));
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     font-size: 2rem;
-    line-height: 4rem;
+    line-height: 1;
     font-weight: bolder;
-    color: transparent;
-    -webkit-text-stroke: 2px #000;
+    color: whitesmoke;
+}
+
+.container .toggle-expense-form-btn:hover,
+.container .dump-expense-to-history-btn:hover,
+.container .next-btn:hover,
+.container .center-btn:hover,
+.container .go-back-btn:hover,
+.container .previous-expenses:hover {
+    background-color: whitesmoke;
+    color: #111;
+    --scale: 1.12;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.6);
+}
+
+.container .toggle-expense-form-btn:active,
+.container .dump-expense-to-history-btn:active,
+.container .next-btn:active,
+.container .center-btn:active,
+.container .go-back-btn:active,
+.container .previous-expenses:active {
+    --scale: 0.92;
+}
+
+.container .toggle-expense-form-btn,
+.container .center-btn {
+    left: 50%;
+    --shift: -50%;
+}
+
+.container .dump-expense-to-history-btn,
+.container .next-btn {
+    right: 1rem;
+}
+
+.container .go-back-btn,
+.container .previous-expenses {
+    left: 1rem;
 }
 
 .button-holder {
@@ -250,29 +395,174 @@ table.added-names .column-action {
     width: 100%;
 }
 
-.form-group-expenses-line-block.button-holder .add-expense-btn {
-    zoom: 1.5;
-    border: 1px solid whitesmoke;
-    background: transparent;
-    border-radius: 25%;
-}
-
+.form-group-expenses-line-block.button-holder .add-expense-btn,
 .form-group-expenses-line-block.button-holder .close-expense-btn {
     zoom: 1.5;
     border: 1px solid whitesmoke;
-    background: transparent;
+    background: rgba(20, 20, 20, 0.85);
+    color: whitesmoke;
     border-radius: 25%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group-expenses-line-block.button-holder .add-expense-btn:hover,
+.form-group-expenses-line-block.button-holder .close-expense-btn:hover {
+    background: whitesmoke;
+    color: #111;
+}
+
+/* Expense form: dark glass panel to match the history dialog */
+#expense-form .modal-content {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05)),
+        rgba(20, 20, 20, 0.38);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-sizing: border-box;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: 0.5rem 0;
+    color: #fff;
+}
+
+#expense-form .form-group-expenses-line {
+    margin: 0.75rem auto;
+    gap: 0.5rem;
+}
+
+#expense-form .form-group-expenses-line-block label {
+    display: block;
+    margin: 0 0 0.25rem 0.25rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    -webkit-text-stroke: 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+#expense-form .form-group-expenses-line-block select {
+    margin: 0;
+}
+
+#expense-form .expense-name,
+#expense-form .expense-amount,
+#expense-form .expense-person,
+#expense-form .payee-person {
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#expense-form .expense-name,
+#expense-form .expense-amount,
+#expense-form .expense-person {
+    padding: 0.6rem 0.75rem;
+}
+
+#expense-form .expense-name:focus,
+#expense-form .expense-amount:focus,
+#expense-form .expense-person:focus {
+    border-color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#expense-form input::placeholder {
+    color: rgba(245, 245, 245, 0.55);
+}
+
+#expense-form option {
+    background: #1b1b1b;
+    color: whitesmoke;
+}
+
+#expense-form .payee-person .payer-amount input,
+#expense-form .payee-person .consumer-amount input[type="number"] {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    outline: none;
+}
+
+#expense-form .payee-person input[type="checkbox"] {
+    accent-color: whitesmoke;
+}
+
+#expense-form .button-holder .add-expense-btn,
+#expense-form .button-holder .close-expense-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+#expense-form .button-holder .add-expense-btn:hover,
+#expense-form .button-holder .close-expense-btn:hover {
+    background: whitesmoke;
+    color: #111;
+}
+
+.settlement-wrapper {
+    height: calc(100% - 5rem);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.settlement-wrapper .settlement-list {
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0.5rem;
 }
 
 .expense-list {
     height: calc(100% - 5rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     border-radius: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#expenses-container,
+#settlement-container {
+    overflow: hidden;
+}
+
+#names-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.members-scroll {
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 5rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+}
+
+.expense-list-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
 }
 
 .expense-list-table {
     width: 100%;
-    height: calc(100% - 4rem);
 }
 
 .expense-list-table-item {
@@ -289,19 +579,134 @@ table.added-names .column-action {
     position: relative;
 }
 
+.expense-list-table-item .line:last-child {
+    padding-bottom: 0.4rem;
+}
+
 .expense-list-table-item-name,
 .expense-list-table-item-paid-by {
     flex: 10;
     padding-left: 2rem;
 }
 
-.expense-list-table-item-remove-expense {
-    text-align: right;
+.expense-list-table-item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.expense-list-table-item-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
-    padding: 0 0.5rem 0 0.5rem;
     border: 2px solid;
     border-radius: 50%;
-    zoom: 0.75;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.expense-list-table-item.estimate {
+    border-bottom-style: dashed;
+}
+
+.expense-list-table-item.over .expense-list-table-item-amount {
+    color: #e2a09b;
+}
+
+.expense-list-table-item.under .expense-list-table-item-amount {
+    color: #a3c9a8;
+}
+
+.pay-menu {
+    position: fixed;
+    z-index: 3;
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0.75rem;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05)),
+        rgba(20, 20, 20, 0.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    backdrop-filter: blur(22px) saturate(1.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.pay-menu button {
+    padding: 0.4rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pay-menu button:hover {
+    background: #fff;
+    color: #111;
+}
+
+.expense-tag {
+    margin-left: 0.25rem;
+    padding: 0 0.4rem;
+    border: 1px dashed rgba(255, 255, 255, 0.7);
+    border-radius: 0.5rem;
+    font-size: 0.7rem;
+    vertical-align: middle;
+}
+
+.expense-filter {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.expense-filter button {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.expense-filter button.selected {
+    background: #fff;
+    color: #111;
+    text-shadow: none;
+}
+
+.budget-summary {
+    margin: 0.5rem 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.budget-card {
+    margin: 0 0 0.5rem;
+    text-align: left;
+}
+
+.budget-card strong {
+    display: block;
+    text-align: center;
+}
+
+.budget-card p {
+    margin: 0.25rem 0 0;
 }
 
 .no-expenses {

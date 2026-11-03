@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/Images/favicon/site.webmanifest">
+    <title>Splitsy - Expenses</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/collapsible.css">
+</head>
+
+<body>
+    <h1 class="header">Splitsy</h1>
+    <div class="container" id="expenses-container">
+        <div class="expense-list">
+            <div id="expense-filter" class="expense-filter">
+                <button type="button" class="selected" data-filter="all">All</button>
+                <button type="button" data-filter="estimate">Estimates</button>
+                <button type="button" data-filter="actual">Actual</button>
+            </div>
+            <div class="expense-list-scroll">
+                <table class="expense-list-table">
+                    <tbody id="expense-list-table-body">
+                        <!-- Expense items will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button id="go-back" class="go-back-btn" title="Go Back" onclick="editNames()">&#8656;</button>
+        <button id="toggle-expense-form" class="toggle-expense-form-btn" title="Add Expense">&plus;</button>
+        <button id="settle-expenses" class="next-btn" title="Settle Expenses" onclick="settleExpenses()">&#129534;</button>
+    </div>
+
+    <div id="expense-form" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form class="form-group-expenses" id="form-group-expenses">
+                    <input type="hidden" id="estimate-id" name="estimateId">
+                    <input type="hidden" id="expense-id" name="expenseId">
+                    <div class="form-group-expenses-line">
+                        <div class="form-group-expenses-line-block">
+                            <label for="expense-kind">Type</label>
+                            <select id="expense-kind" class="expense-person" name="kind" onchange="toggleKind(this)">
+                                <option value="actual">Actual</option>
+                                <option value="estimate">Estimated</option>
+                                <option value="advance">Advance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="advance-fields" class="remove-from-screen">
+                        <div class="form-group-expenses-line">
+                            <div class="form-group-expenses-line-block">
+                                <label for="budget-item">Budget item</label>
+                                <select id="budget-item" class="expense-person" name="budgetItem"
+                                    onchange="toggleBudgetItem(this)">
+                                    <option value="">None</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="agreed-line" class="form-group-expenses-line remove-from-screen">
+                            <input type="number" id="agreed-amount" class="expense-person" name="agreed"
+                                placeholder="Agreed total for this item" min="0" step="any">
+                        </div>
+                    </div>
+                    <div class="form-group-expenses-line">
+                        <input type="text" id="expense-name" class="expense-name" name="item" placeholder="Expense Name"
+                            required>
+                        <input type="number" id="expense-amount" class="expense-amount" name="price"
+                            placeholder="Amount" min="0" required>
+                    </div>
+                    <div id="actual-fields">
+                    <div class="form-group-expenses-line">
+                        <div class="form-group-expenses-line-block">
+                            <label for="paid-by">Who paid?</label>
+                            <select id="paid-by" class="expense-person" name="payer" required
+                                onchange="togglePayers(this)">
+                                <!-- Added dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-expenses-line">
+                        <div id="paid-by-multiple" class="remove-from-screen payee-person">
+                            <!-- Added dynamically -->
+                        </div>
+                    </div>
+                    <div class="form-group-expenses-line">
+                        <div class="form-group-expenses-line-block">
+                            <label for="paid-equally">Did everyone consume?</label>
+                            <select id="paid-equally" class="expense-person" name="contribution" required
+                                onchange="toggleDividedAmong(this)">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-expenses-line">
+                        <div id="divided-among" class="remove-from-screen payee-person">
+                            <!-- Added dynamically -->
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group-expenses-line">
+                        <div class="form-group-expenses-line-block button-holder">
+                            <button type="reset" id="closeExpenseForm" class="close-expense-btn">&#10007;</button>
+                            <button type="submit" id="addExpense" class="add-expense-btn">&#10003;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    <script src="scripts/util.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/modal.js"></script>
+    <script src="scripts/expenses.js"></script>
+</body>
+
+</html>
